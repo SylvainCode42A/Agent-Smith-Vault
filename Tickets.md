@@ -32,12 +32,12 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 ---
 
 ## Phase 0 — Fondations 🟣 (½ journée, ensemble)
-- [ ] 🟣 `pyproject.toml` : Python **3.10**, deps `pydantic`, `mcp`, `httpx`, `python-dotenv`, `pytest` ; script `sandbox = "smith_core.sandbox.cli:main"` → *preuve : `uv run sandbox --help`*
-- [ ] 🟣 `smith_core/models.py` : les 5 modèles copiés du sujet → [[MOD - Modèles Pydantic]]
-- [ ] 🟣 Contrat `ExecResult` + signatures `Sandbox` + `FakeSandbox` → [[OVR - smith_core]]
-- [ ] 🟣 `.gitignore` (`.env`, `__pycache__`, `cache/`), `.env.example`, retirer `Archive ZIP.zip`
-- [ ] 🟣 Branches `dev-sylvain` / `dev-thomas`, GitHub Project avec ces tickets
-- [ ] 🟣 Récupérer le dossier `moulinette/` et lancer `moulinette_eval dump mbpp` une fois
+- [x] 🟣 `pyproject.toml` : Python **3.10**, deps `pydantic`, `mcp`, `httpx`, `python-dotenv`, `pytest` ; script `sandbox = "smith_core.sandbox.cli:main"` → *preuve : `uv run sandbox --help`*
+- [x] 🟣 `smith_core/models.py` : les 5 modèles copiés du sujet → [[MOD - Modèles Pydantic]]
+- [x] 🟣 Contrat `ExecResult` + signatures `Sandbox` + `FakeSandbox` → [[OVR - smith_core]]
+- [x] 🟣 `.gitignore` (`.env`, `__pycache__`, `cache/`), `.env.example`, retirer `Archive ZIP.zip`
+- [x] 🟣 Branches `dev-sylvain` / `dev-thomas`, GitHub Project avec ces tickets
+- [x] 🟣 Récupérer le dossier `moulinette/` et lancer `moulinette_eval dump mbpp` une fois
 
 ## Phase 1 — MBPP qui marche (jusqu'à M1)
 ### 🟢 Sylvain

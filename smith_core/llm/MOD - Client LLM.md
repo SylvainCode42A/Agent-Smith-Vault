@@ -2,10 +2,16 @@
 type: module
 title: MOD - Client LLM
 language: Python 3.10 (httpx ou openai SDK)
-path: ⚠️ proposé smith_core/llm/client.py + keys.py
+path: ⚠️ proposé smith_core/llm/client.py + keys.py (test de different IA dans scripts/try_llm.py)
 status: draft
-related: ["[[MOD - Boucle agent]]", "[[GUIDE - Benchmark report]]"]
-tags: [agent-smith, smith_core, module, thomas]
+related:
+  - "[[MOD - Boucle agent]]"
+  - "[[GUIDE - Benchmark report]]"
+tags:
+  - agent-smith
+  - smith_core
+  - module
+  - thomas
 ---
 # MOD - Client LLM
 
@@ -30,13 +36,13 @@ Presque tous les providers gratuits exposent une API **compatible OpenAI** (`POS
 ⚠️ à vérifier : URLs et support du paramètre `stop` par chacun (déjà testé avec `scripts/try_gemini.py` ?).
 
 ## Fonctions à créer
-| Symbole | Rôle | Appelé par | Appelle |
-|---|---|---|---|
-| `LLMResponse` (dataclass) | `text, input_tokens, output_tokens, request_time_ms, retries, api_url, model_name` | [[MOD - Boucle agent]] | — |
-| `KeyRing(env_prefix)` | charge `X_API_KEY`, `X_API_KEY_2`… ; `current()`, `rotate()` | `LLMClient` | `os.environ`, `dotenv` |
-| `provider_prefix(url) -> str` | `"openrouter.ai"` → `"OPENROUTER"` | `LLMClient.__init__` | — |
-| `LLMClient(base_url, model)` | le client | agents (`__main__`) | `KeyRing` |
-| `LLMClient.chat(messages, max_tokens, stop) -> LLMResponse` | 1 appel logique, N requêtes HTTP | [[MOD - Boucle agent]] | `httpx.post`, `KeyRing.rotate` |
+| Symbole                                                     | Rôle                                                                               | Appelé par             | Appelle                        |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------- | ------------------------------ |
+| `LLMResponse` (dataclass)                                   | `text, input_tokens, output_tokens, request_time_ms, retries, api_url, model_name` | [[MOD - Boucle agent]] | —                              |
+| `KeyRing(env_prefix)`                                       | charge `X_API_KEY`, `X_API_KEY_2`… ; `current()`, `rotate()`                       | `LLMClient`            | `os.environ`, `dotenv`         |
+| `provider_prefix(url) -> str`                               | `"openrouter.ai"` → `"OPENROUTER"`                                                 | `LLMClient.__init__`   | —                              |
+| `LLMClient(base_url, model)`                                | le client                                                                          | agents (`__main__`)    | `KeyRing`                      |
+| `LLMClient.chat(messages, max_tokens, stop) -> LLMResponse` | 1 appel logique, N requêtes HTTP                                                   | [[MOD - Boucle agent]] | `httpx.post`, `KeyRing.rotate` |
 
 ## Squelette (à trous)
 ```python

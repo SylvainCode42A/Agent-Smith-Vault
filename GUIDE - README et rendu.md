@@ -8,7 +8,7 @@ tags: [agent-smith, guide, sylvain, thomas]
 # GUIDE - README et rendu
 
 ## README.md — sections obligatoires (en anglais)
-1. **1re ligne en italique, exactement** : `*This project has been created as part of the 42 curriculum by slidriss, <login_thomas>.*` ⚠️ login de Thomas à compléter.
+1. **1re ligne en italique, exactement** : `*This project has been created as part of the 42 curriculum by slidriss, thmaille.*` 
 2. **Description** — but et vue d'ensemble.
 3. **Instructions** — `uv sync`, `.env` (noms des variables), les commandes `sandbox`, `agent_mbpp`, `agent_swebench`.
 4. **Resources** — docs (MCP, SWE-bench, MBPP, smolagents *comme lecture* seulement), **et comment l'IA a été utilisée** (pour quoi, quelles parties).
@@ -22,7 +22,7 @@ Astuce : les sections 5 sont des résumés des notes du vault ([[OVR - smith_cor
 - [ ] `README.md`, `BENCHMARK_REPORT.md`, `benchmark/**/solution.json`
 - [ ] `pyproject.toml` (script `sandbox`), `uv.lock`, Python 3.10
 - [ ] **Aucune clé API** (`git grep -i "api_key\s*=\s*['\"]"`), `.env` dans `.gitignore`
-- [ ] Pas de `__pycache__`, pas d'images Docker, pas de `Archive ZIP.zip` (⚠️ présent dans le tree actuel : à retirer), pas de sorties générées hors `benchmark/`
+- [ ] Pas de `__pycache__`, pas d'images Docker, pas de `Archive ZIP.zip`, pas de sorties générées hors `benchmark/`
 
 ## Préparer la soutenance
 - Chacun doit savoir expliquer **toute** l'architecture (pas seulement sa partie) : relire [[Explications - Lire en dernier]] ensemble.
