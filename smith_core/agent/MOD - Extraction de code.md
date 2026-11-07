@@ -2,10 +2,16 @@
 type: module
 title: MOD - Extraction de code
 language: Python 3.10 (re, json)
-path: ⚠️ proposé smith_core/agent/extract.py
-status: draft
-related: ["[[MOD - Boucle agent]]", "[[MOD - Prompt système]]"]
-tags: [agent-smith, smith_core, module, thomas]
+path: ⚠️ proposé smith_core/agent/extract.py + formats.py + helpers.py
+status: done
+related:
+  - "[[MOD - Boucle agent]]"
+  - "[[MOD - Prompt système]]"
+tags:
+  - agent-smith
+  - smith_core
+  - module
+  - thomas
 ---
 # MOD - Extraction de code
 
@@ -27,14 +33,14 @@ Et les **messages explicites** au LLM (exigé) :
 Minimum acceptable : (a) solide + (b)(c)(d) en version simple (une regex chacun). On n'utilise vraiment que (a) avec Gemini/Llama ; les autres servent si un modèle du benchmark les produit.
 
 ## Fonctions à créer
-| Symbole | Rôle | Appelé par | Appelle |
-|---|---|---|---|
-| `extract_code(text) -> tuple[str \| None, str]` | essaie les formats dans l'ordre | [[MOD - Boucle agent]] | les 4 ci-dessous |
-| `_from_python_block(text)` | regex ```` ```(?:python|py)?\n(.*?)``` ```` (DOTALL) ; plusieurs blocs → les concaténer | `extract_code` | — |
-| `_from_xml_invoke(text)` | `<invoke name="…">` + `<parameter name="…">` | `extract_code` | `_call_to_python` |
-| `_from_hermes(text)` | `<tool_call>{json}</tool_call>` | `extract_code` | `_call_to_python` |
-| `_from_react(text)` | `Action:` / `Action Input:` | `extract_code` | `_call_to_python` |
-| `_call_to_python(name, args) -> str` | `result = name(k=repr(v), …)\nprint(result)` | les 3 du dessus | `repr` |
+| Symbole                                         | Rôle                                         | Appelé par                                                      | Appelle           |     |
+| ----------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- | ----------------- | --- |
+| `extract_code(text) -> tuple[str \| None, str]` | essaie les formats dans l'ordre              | [[MOD - Boucle agent]]                                          | les 4 ci-dessous  |     |
+| `_from_python_block(text)`                      | regex ```` ```(?:python                      | py)?\n(.*?)``` ```` (DOTALL) ; plusieurs blocs → les concaténer | `extract_code`    | —   |
+| `_from_xml_invoke(text)`                        | `<invoke name="…">` + `<parameter name="…">` | `extract_code`                                                  | `_call_to_python` |     |
+| `_from_hermes(text)`                            | `<tool_call>{json}</tool_call>`              | `extract_code`                                                  | `_call_to_python` |     |
+| `_from_react(text)`                             | `Action:` / `Action Input:`                  | `extract_code`                                                  | `_call_to_python` |     |
+| `_call_to_python(name, args) -> str`            | `result = name(k=repr(v), …)\nprint(result)` | les 3 du dessus                                                 | `repr`            |     |
 
 ## Bout de code
 ```python
@@ -48,12 +54,12 @@ Exemple : `_call_to_python("read_file", {"filepath": "/testbed/a.py", "start_lin
 `result = read_file(filepath='/testbed/a.py', start_line=1)` puis `print(result)`.
 
 ## Le piège du `stop`
-Sans `stop=["<end_code>"]` dans l'appel API, le modèle continue à écrire et **invente** une fausse `Observation:`. Avec le stop, le texte reçu **ne contient pas** `<end_code>` et souvent pas le dernier ```` ``` ```` → gérer un bloc **non fermé** (`"```python\n…"` jusqu'à la fin) et le signaler dans la notice.
+Sans `stop=["<end_code>"]` dans l'appel API, le modèle continue à écrire et **invente** une fausse `Observation:`. Avec le stop, le texte reçu **ne contient pas** `<end_code>` et souvent pas le dernier ```` ``` ```` → gérer un bloc **non fermé** (`"```python\n…"` jusqu'à la fin) et le signaler dans la notice. ✅ Traite
 
 ## Cas limites
-- Le modèle écrit `Observation:` lui-même → couper le texte à `Observation:` avant extraction.
-- Bloc ```` ```json ```` ou ```` ```bash ```` → ce n'est pas du Python : l'ignorer et le dire.
-- Arguments JSON invalides dans (c)/(d) → notice, pas de crash.
+- Le modèle écrit `Observation:` lui-même → couper le texte à `Observation:` avant extraction. ✅ Traite 
+- Bloc ```` ```json ```` ou ```` ```bash ```` → ce n'est pas du Python : l'ignorer et le dire. ✅ Traite
+- Arguments JSON invalides dans (c)/(d) → notice, pas de crash. ✅ Traite
 
 ## Notes liées
 [[MOD - Prompt système]] · [[10 - School/10 - Agent-Smith/Index des fonctions|Index des fonctions]]
