@@ -47,8 +47,8 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 - [ ] `cli.py` : REPL (`exit`, Ctrl+D), options `--mcp-stdio`, config JSON → [[MOD - CLI sandbox]]
 - *preuve : dans `uv run sandbox --mcp-stdio "python mcp_tools_mbpp.py"`, taper `print(run_tests(code="def f(): return 1", test_list=["assert f()==1"]))` → `success: true`*
 ### 🔵 Thomas
-- [ ] `LLMClient.chat` compatible OpenAI + `KeyRing` (plusieurs clés, rotation sur 429) + retries comptés + usage tokens → [[MOD - Client LLM]]
-- [ ] `extract_code` format (a) + bloc non fermé + messages « pas de code » → [[MOD - Extraction de code]]
+- [x] `LLMClient.chat` compatible OpenAI + `KeyRing` (plusieurs clés, rotation sur 429) + retries comptés + usage tokens → [[MOD - Client LLM]]
+- [x] `extract_code` format (a) + bloc non fermé + messages « pas de code » → [[MOD - Extraction de code]]
 - [ ] `run_agent` + `StepMetrics` complètes + `SolutionOutput` → [[MOD - Boucle agent]]
 - [ ] Prompt MBPP court (≤ 700 tokens) → [[MOD - Prompt système]]
 - [ ] `agent_mbpp/__main__.py` (4 options + `--max-iterations`, JSON toujours écrit) → [[MOD - Agent MBPP]]
