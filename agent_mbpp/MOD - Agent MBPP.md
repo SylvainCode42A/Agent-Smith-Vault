@@ -26,12 +26,12 @@ Le programme lancé par la moulinette : `uv run python -m agent_mbpp --task-file
 | Temps | 120 s | arrêter la boucle à 100 s (démarrage `uv` + serveur MCP compris) |
 
 ## Fonctions à créer
-| Symbole | Rôle | Appelé par | Appelle |
-|---|---|---|---|
-| `main()` | parse, exécute, écrit, **toujours** un JSON | `python -m agent_mbpp` | tout ce qui suit |
-| `parse_args()` | `--task-file --output --model-name --provider-url --max-iterations` | `main` | `argparse` |
-| `load_task(path) -> MBPPTaskInput` | lit le JSON | `main` | [[MOD - Modèles Pydantic]] |
-| `mbpp_fallback(steps, func_name)` | dernier code extrait qui contient `def func_name` | [[MOD - Boucle agent]] | — |
+| Symbole                            | Rôle                                                                | Appelé par             | Appelle                    |
+| ---------------------------------- | ------------------------------------------------------------------- | ---------------------- | -------------------------- |
+| `main()`                           | parse, exécute, écrit, **toujours** un JSON                         | `python -m agent_mbpp` | tout ce qui suit           |
+| `parse_args()`                     | `--task-file --output --model-name --provider-url --max-iterations` | `main`                 | `argparse`                 |
+| `load_task(path) -> MBPPTaskInput` | lit le JSON                                                         | `main`                 | [[MOD - Modèles Pydantic]] |
+| `mbpp_fallback(steps, func_name)`  | dernier code extrait qui contient `def func_name`                   | [[MOD - Boucle agent]] | —                          |
 
 ## Squelette (à trous)
 ```python
