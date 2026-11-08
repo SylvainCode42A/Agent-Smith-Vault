@@ -49,7 +49,7 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 ### 🔵 Thomas
 - [x] `LLMClient.chat` compatible OpenAI + `KeyRing` (plusieurs clés, rotation sur 429) + retries comptés + usage tokens → [[MOD - Client LLM]]
 - [x] `extract_code` format (a) + bloc non fermé + messages « pas de code » → [[MOD - Extraction de code]]
-- [ ] `run_agent` + `StepMetrics` complètes + `SolutionOutput` → [[MOD - Boucle agent]]
+- [x] `run_agent` + `StepMetrics` complètes + `SolutionOutput` → [[MOD - Boucle agent]]
 - [ ] Prompt MBPP court (≤ 700 tokens) → [[MOD - Prompt système]]
 - [ ] `agent_mbpp/__main__.py` (4 options + `--max-iterations`, JSON toujours écrit) → [[MOD - Agent MBPP]]
 - *preuve : avec `FakeSandbox`, une tâche MBPP produit un `solution.json` valide*
