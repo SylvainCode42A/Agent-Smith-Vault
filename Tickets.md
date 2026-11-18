@@ -50,8 +50,8 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 - [x] `LLMClient.chat` compatible OpenAI + `KeyRing` (plusieurs clés, rotation sur 429) + retries comptés + usage tokens → [[MOD - Client LLM]]
 - [x] `extract_code` format (a) + bloc non fermé + messages « pas de code » → [[MOD - Extraction de code]]
 - [x] `run_agent` + `StepMetrics` complètes + `SolutionOutput` → [[MOD - Boucle agent]]
-- [ ] Prompt MBPP court (≤ 700 tokens) → [[MOD - Prompt système]]
-- [ ] `agent_mbpp/__main__.py` (4 options + `--max-iterations`, JSON toujours écrit) → [[MOD - Agent MBPP]]
+- [x] Prompt MBPP court (≤ 700 tokens) → [[MOD - Prompt système]]
+- [x] `agent_mbpp/__main__.py` (4 options + `--max-iterations`, JSON toujours écrit) → [[MOD - Agent MBPP]]
 - *preuve : avec `FakeSandbox`, une tâche MBPP produit un `solution.json` valide*
 ### 🟣 M1 : brancher la vraie sandbox, résoudre la task 2, `validate mbpp`
 
@@ -63,14 +63,14 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 - [ ] Timeout (kill + relance + sortie partielle) et mémoire (`RLIMIT_AS`) + notices
 - [ ] Troncature des sorties + notice ; `SystemExit`/`KeyboardInterrupt` propagés
 - [ ] Transport **HTTP streamable** (client + `--http` côté serveurs) ; resources & prompts exposés
-- [ ] `build_manual` dynamique → [[MOD - Manuel sandbox]]
-- [ ] `tests/test_sandbox.py` (tableau de [[GUIDE - Tests et sécurité]]) ; tests mémoire sous Linux
+- [x] `build_manual` dynamique → [[MOD - Manuel sandbox]]
+- [x] `tests/test_sandbox.py` (tableau de [[GUIDE - Tests et sécurité]]) ; tests mémoire sous Linux
 ### 🔵 Thomas
-- [ ] Gardes de budget (entrée, sortie, temps) avec marges + fallback MBPP
-- [ ] Extraction formats (b) XML, (c) Hermes, (d) ReAct + notice « interprété comme… »
-- [ ] Observation : notices en tête, `(no output…)`
-- [ ] Lancer 10–20 tâches MBPP, ajuster le prompt et le choix du modèle → ≥ 80 %
-- [ ] `tests/test_extract.py`
+- [x] Gardes de budget (entrée, sortie, temps) avec marges + fallback MBPP
+- [x] Extraction formats (b) XML, (c) Hermes, (d) ReAct + notice « interprété comme… »
+- [x] Observation : notices en tête, `(no output…)`
+- [x] Lancer 10–20 tâches MBPP, ajuster le prompt et le choix du modèle → ≥ 80 %
+- [x] `tests/test_extract.py`
 ### 🟣 M2 : simuler `exam_mbpp.sh` (5 tâches au hasard) et `exam_sandbox.sh`
 
 ## Phase 3 — SWE-bench (jusqu'à M3)
@@ -80,7 +80,7 @@ related: ["[[10 - School/10 - Agent-Smith/00 - Accueil|00 - Accueil]]", "[[OVR -
 - [ ] Fixture git + `tests/test_tools_swebench.py` (mode local, `TESTBED_PATH`)
 - [ ] Vérifier comment la moulinette fournit l'eval script à `run_tests()` en test isolé ⚠️
 ### 🔵 Thomas
-- [ ] Cycle Docker : `start_container`, `copy_eval_script`, `remove_container` idempotent → [[MOD - Agent SWE-bench]]
+- [x] Cycle Docker : `start_container`, `copy_eval_script`, `remove_container` idempotent → [[MOD - Agent SWE-bench]]
 - [ ] Handler SIGTERM + `finally` (nettoyage + JSON partiel)
 - [ ] Prompt SWE (méthode localiser → lire → éditer → tester → soumettre)
 - [ ] Fallback `get_patch()` ; troncature des observations ; budgets 30 / 290k / 9,5k / 850 s

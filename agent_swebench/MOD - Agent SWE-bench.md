@@ -37,14 +37,14 @@ sequenceDiagram
 ```
 
 ## Fonctions à créer
-| Symbole | Rôle | Appelé par | Appelle |
-|---|---|---|---|
-| `main()` | orchestre, écrit le JSON | `python -m agent_swebench` | tout |
-| `start_container(task) -> str` | `docker run -d --name … image sleep infinity` | `main` | `subprocess.run` |
-| `copy_eval_script(name, script)` | `docker exec -i name sh -c 'mkdir -p /tmp/agent && cat > /tmp/agent/eval.sh'` avec `input=script` | `main` | — |
-| `remove_container(name)` | `docker rm -f`, **idempotent**, ne lève jamais | `finally`, `on_sigterm` | — |
-| `on_sigterm(signum, frame)` | `raise SystemExit(1)` → déclenche les `finally` | `signal.signal(SIGTERM, …)` | — |
-| `swe_fallback(sandbox)` | `get_patch()` même sans `final_answer` | [[MOD - Boucle agent]] | [[MOD - Client MCP]] `call_tool("get_patch", {})` |
+| Symbole                          | Rôle                                                                                              | Appelé par                  | Appelle                                           |
+| -------------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------- | ------------------------------------------------- |
+| `main()`                         | orchestre, écrit le JSON                                                                          | `python -m agent_swebench`  | tout                                              |
+| `start_container(task) -> str`   | `docker run -d --name … image sleep infinity`                                                     | `main`                      | `subprocess.run`                                  |
+| `copy_eval_script(name, script)` | `docker exec -i name sh -c 'mkdir -p /tmp/agent && cat > /tmp/agent/eval.sh'` avec `input=script` | `main`                      | —                                                 |
+| `remove_container(name)`         | `docker rm -f`, **idempotent**, ne lève jamais                                                    | `finally`, `on_sigterm`     | —                                                 |
+| `on_sigterm(signum, frame)`      | `raise SystemExit(1)` → déclenche les `finally`                                                   | `signal.signal(SIGTERM, …)` | —                                                 |
+| `swe_fallback(sandbox)`          | `get_patch()` même sans `final_answer`                                                            | [[MOD - Boucle agent]]      | [[MOD - Client MCP]] `call_tool("get_patch", {})` |
 
 ## Squelette (à trous)
 ```python
